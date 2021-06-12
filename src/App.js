@@ -1,5 +1,14 @@
+import { message, Button } from 'antd'
+import { useEffect } from 'react'
+
 const App = () => {
-  return <span>Hello World</span>
+  const onClick = () => {
+    message.info('test')
+  }
+  return (<span>
+    <img src={require('./assets/images/index.jpg')}></img>
+    <Button type="primary" onClick={onClick}>Hello World</Button>
+  </span>)
 }
 
 export default App
