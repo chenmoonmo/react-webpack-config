@@ -1,12 +1,13 @@
 import { message, Button } from 'antd'
-import { useEffect } from 'react'
+import app from './styles/app.module.css'
 
-const App = () => {
+const App = ({history}) => {
   const onClick = () => {
     message.info('test')
+    history.push('/hello')
   }
   return (<span>
-    <img src={require('./assets/images/index.jpg')}></img>
+    <img className={app.img} src={require('./assets/images/index.jpg')}></img>
     <Button type="primary" onClick={onClick}>Hello World</Button>
   </span>)
 }

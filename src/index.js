@@ -1,10 +1,8 @@
-// import React from 'react'
 import ReactDOM from 'react-dom';
-import App from './App.js';
 import 'antd/dist/antd.css';
-// window.React = React
+import Routes from './routes/index.js'
 
 ReactDOM.render(
-  <App />,
+  <Routes />,
   document.querySelector('#root')
 )
