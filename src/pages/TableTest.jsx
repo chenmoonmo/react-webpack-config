@@ -1,20 +1,8 @@
-import { Table } from "antd"
+import { Table, Button } from "antd"
+import { useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from './tableReducer'
 const table = () => {
-    const dataSource = [
-        {
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号',
-        },
-        {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号',
-        },
-    ];
-
     const columns = [
         {
             title: '姓名',
@@ -32,6 +20,24 @@ const table = () => {
             key: 'address',
         },
     ];
-    return <Table dataSource={dataSource} columns={columns}></Table>
+
+    const dataSource = useSelector((store) => store.table.dataSource)
+    const data = useMemo(() => {
+        const key = dataSource.length + 1
+        return {
+            key,
+            name: '胡彦祖',
+            age: 42,
+            address: '西湖区湖底公园1号',
+        }
+    }, [dataSource])
+    
+    const dispatch = useDispatch()
+    return (
+        <>
+            <Button onClick={() => dispatch(increment({ data }))}>add</Button>
+            <Table dataSource={dataSource} columns={columns}></Table>
+        </>
+    )
 }
 export default table
