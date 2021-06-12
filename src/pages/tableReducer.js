@@ -18,13 +18,16 @@ export const tableSlice = createSlice({
         ]
     },
     reducers: {
-        increment: (state,  {payload:{data}} ) => {
+        increment: (state, { payload: { data } }) => {
             console.log(data)
             state.dataSource.push(data)
         },
+        deleteItem: (state, { payload: { index } }) => {
+            state.dataSource.splice(index, 1)
+        }
     },
 })
 
-export const { increment } = tableSlice.actions
+export const { increment,deleteItem } = tableSlice.actions
 
 export default tableSlice.reducer

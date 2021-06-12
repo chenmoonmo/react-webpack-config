@@ -1,7 +1,7 @@
 import { Table, Button } from "antd"
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from './tableReducer'
+import { increment, deleteItem } from './tableReducer'
 const table = () => {
     const columns = [
         {
@@ -19,9 +19,17 @@ const table = () => {
             dataIndex: 'address',
             key: 'address',
         },
+        {
+            title: 'Action',
+            dataIndex: 'Action',
+            key: 'x',
+            render: (_, e, index) => <a onClick={() => { dispatch(deleteItem({ index })) }}>Delete</a>,
+        },
     ];
 
     const dataSource = useSelector((store) => store.table.dataSource)
+    const dispatch = useDispatch()
+
     const data = useMemo(() => {
         const key = dataSource.length + 1
         return {
@@ -31,8 +39,7 @@ const table = () => {
             address: '西湖区湖底公园1号',
         }
     }, [dataSource])
-    
-    const dispatch = useDispatch()
+
     return (
         <>
             <Button onClick={() => dispatch(increment({ data }))}>add</Button>
